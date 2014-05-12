@@ -13,7 +13,7 @@ class Api < Sinatra::Base
     begin
       id = store.set(params[:url])
       status 201
-      json :message => "URL has been added successfully", url: "http://kbrvrgl.me/#{id}"
+      json :message => "URL has been added successfully", url: "http://#{DOMAIN}/#{id}"
     rescue Storage::StorageError
       status 422
       json :message => "URL hasnt been added successfully", :reason => e.message
