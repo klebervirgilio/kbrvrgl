@@ -1,15 +1,11 @@
 class Storage::RedisProxy
-  def redis
-    @redis ||= Redis.new
-  end
-
   def get key
-    redis.get [Storage::PREFIX, key].join
+    REDIS.get [Storage::PREFIX, key].join
   end
 
   def set url
     generate_id.tap do |id|
-      redis.set [Storage::PREFIX, id].join, url
+      REDIS.set [Storage::PREFIX, id].join, url
     end
   end
 
