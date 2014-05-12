@@ -8,7 +8,7 @@ Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 REDIS = if ENV["RACK_ENV"] != "production"
           Redis.new
         else
-          Redis.new(url: ENV[:REDISTOGO_URL])
+          Redis.new(url: ENV['REDISTOGO_URL'])
         end
 
 require './lib/storage'
