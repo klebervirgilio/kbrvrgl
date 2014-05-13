@@ -4,6 +4,11 @@ class App < Sinatra::Base
 
   not_found { "URL resquested not found" }
   error { "Something wrong happend" }
+  register Sinatra::Twitter::Bootstrap::Assets
+
+  get "/" do
+    slim :index
+  end
 
   get "/:id" do
     url = store.get params[:id]

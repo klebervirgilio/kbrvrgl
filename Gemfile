@@ -8,6 +8,7 @@ gem "redis"
 gem "slim"
 gem "json"
 gem 'shotgun'
+gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 
 group :test do
   gem 'rspec'

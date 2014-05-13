@@ -15,7 +15,11 @@ class Storage::RedisProxy
     begin
       @hex = SecureRandom.hex[0..(rand(count.to_i))]
       count += 0.3
-    end while !(hex=get(@hex)).nil? || hex && hex.empty?
+    end while used?(@hex)
     @hex
+  end
+
+  def used? id
+    !(hex=get(id)).nil? || hex && !hex.empty?
   end
 end
