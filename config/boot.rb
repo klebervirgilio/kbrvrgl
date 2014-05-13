@@ -12,7 +12,4 @@ REDIS  = if ENV["RACK_ENV"] != "production"
           Redis.new(url: ENV['REDISTOGO_URL'])
         end
 
-require './lib/storage'
-require './lib/storage/redis_proxy'
-require './lib/app'
-require './lib/api'
+Dir["./lib/**/*.rb"].each{|f| require f }

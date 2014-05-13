@@ -2,12 +2,11 @@ require 'rack/test'
 require 'bundler/setup'
 
 ENV['RACK_ENV'] = 'test'
-Bundler.require(:default, ENV["RACK_ENV"].to_sym)
+require File.expand_path("../../config/boot.rb", __FILE__)
 
-require_relative '../lib/storage'
-require_relative '../lib/storage/redis_proxy'
-require_relative '../lib/app'
-require_relative '../lib/api'
+path = File.expand_path("../..", __FILE__)
+require "#{path}/lib/storage"
+Dir["#{path}/lib/**/*.rb"].each{|f| require f }
 
 module RSpecMixin
   include Rack::Test::Methods

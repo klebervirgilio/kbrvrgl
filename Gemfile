@@ -8,7 +8,6 @@ gem "redis"
 gem "slim"
 gem "json"
 gem 'shotgun'
-gem 'mongo_mapper'
 gem 'sidekiq'
 gem 'geoip'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'

@@ -1,17 +1,23 @@
 # coding: utf-8
+require_relative './storage'
 class Api < Sinatra::Base
-  use Rack::Auth::Basic, "API" do |username, password|
-    username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
-  end
+  # use Rack::Auth::Basic, "API" do |username, password|
+  #   username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
+  # end
 
   store = Storage::RedisProxy.new
 
   not_found { json :message => 'Lost...' }
   error { json :message => 'BOOMM...' }
 
+  before "/short" do
+    validator = UrlValidator.new(params[:url])
+    halt 422, json({:message => 'Invalid URL'}) if !validator.valid?
+  end
+
   post "/short" do
     begin
-      id = store.set(params[:url])
+      id = store.set(URI.encode(params[:url]))
       status 201
       json :message => "URL has been added successfully", url: "http://#{DOMAIN}/#{id}"
     rescue Storage::StorageError

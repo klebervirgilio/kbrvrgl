@@ -1,4 +1,8 @@
-class Storage::RedisProxy
+class Storage::RedisProxy < SimpleDelegator
+  def initialize
+    __setobj__(REDIS)
+  end
+
   def get key
     REDIS.get [Storage::PREFIX, key].join
   end
