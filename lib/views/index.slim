@@ -5,4 +5,4 @@ head
     .container.fluid
       .row.well
         pre style="text-align: center"
-          | `curl -s -XPOST 'http://r.kbrvrgl.me/api/short' -d "url=URL" --user dev:dev`
+          | `curl -XPOST http://r.kbrvrgl.me/api/short -d "label=SOME_LABEL&notes=SOME_NOTE&url=URL" --user dev:dev`

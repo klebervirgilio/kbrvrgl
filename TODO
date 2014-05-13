@@ -1,6 +1,3 @@
 TODO
 
-1 Validatior Midlleware: URL
-2 Service, background, to find more information about the IP
-3 More data will be stored, refer, ip, views(incr)
-4 /:id/stats - simple view where will be possible see the details about the url.
+Create a simple dashboad, retrive the last 7 days of Stat and plot in a simple graph
