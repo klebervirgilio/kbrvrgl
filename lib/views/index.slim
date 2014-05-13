@@ -1,0 +1,8 @@
+doctype html
+head
+  == bootstrap_assets
+  body
+    .container.fluid
+      .row.well
+        pre style="text-align: center"
+          | `curl -s -XPOST 'http://r.kbrvrgl.me/api/short' -d "url=URL" --user dev:dev`
