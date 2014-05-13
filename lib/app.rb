@@ -14,7 +14,7 @@ class App < Sinatra::Base
   get "/:id" do
     url = store.get params[:id]
     if url && !url.empty?
-      redirect url
+      redirect URI.encode(url)
     else
       status 404
     end

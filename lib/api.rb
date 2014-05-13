@@ -1,9 +1,9 @@
 # coding: utf-8
 require_relative './storage'
 class Api < Sinatra::Base
-  # use Rack::Auth::Basic, "API" do |username, password|
-  #   username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
-  # end
+  use Rack::Auth::Basic, "API" do |username, password|
+    username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
+  end
 
   store = Storage::RedisProxy.new
 
