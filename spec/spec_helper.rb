@@ -13,4 +13,19 @@ module RSpecMixin
 end
 
 # For RSpec 2.x
-RSpec.configure { |c| c.include RSpecMixin }
+RSpec.configure { |config|
+  config.include RSpecMixin
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+}

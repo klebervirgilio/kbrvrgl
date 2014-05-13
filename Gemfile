@@ -7,9 +7,10 @@ gem 'sinatra-contrib'
 gem "redis"
 gem "slim"
 gem "json"
+gem "database_cleaner"
 gem 'shotgun'
-gem 'sidekiq'
 gem 'geoip'
+gem "mongoid", "~> 3.1.6"
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 
 group :test do
