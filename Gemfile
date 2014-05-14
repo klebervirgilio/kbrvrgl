@@ -12,11 +12,9 @@ gem 'shotgun'
 gem 'geoip'
 gem "mongoid", "~> 3.1.6"
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
+gem 'pry'
 
 group :test do
   gem 'rspec'
-  gem 'pry'
   gem 'awesome_print'
 end
-
-
