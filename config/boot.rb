@@ -12,7 +12,9 @@ REDIS  = if ENV["RACK_ENV"] != "production"
           Redis.new(url: ENV['REDISTOGO_URL'])
         end
 
-$:.concat Dir['./lib/**/']
+require "./lib/storage"
+require "./lib/models/concerns/geoable"
+
 Dir["./lib/**/*.rb"].each{|f| require f }
 
 Mongoid.load!(File.expand_path("../../config/mongoid.yml", __FILE__))
