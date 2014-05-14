@@ -10,7 +10,7 @@ class Dummi
 end
 
 
-describe Dummi do
+describe "Geoable" do
   describe '::create_with_geoip' do
     specify { expect(Dummi).to be_respond_to(:create_with_geoip) }
 
