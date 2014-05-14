@@ -11,15 +11,17 @@ class App < Sinatra::Base
 
 
   after "/:id" do
-    ViewCounter.find_and_increment_or_create params[:id] if response.ok?
+    ViewCounter.find_and_increment_or_create params[:id] if response.redirect?
   end
 
   after "/:id" do
-    Stat.build(
-      shortner_id: params[:id],
-      ip: request.ip,
-      referer: request.referer
-    )
+    if response.redirect?
+      Stat.build(
+        shortner_id: params[:id],
+        ip: request.ip,
+        referer: request.referer
+      )
+    end
   end
 
   get "/" do

@@ -1,4 +1,4 @@
-class UrlMetada
+class UrlMetadata
   include Mongoid::Document
   include Mongoid::Timestamps
 

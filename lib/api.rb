@@ -21,7 +21,13 @@ class Api < Sinatra::Base
 
   after "/short" do
     return if response.status == 422
-    UrlMetada.build(url: params[:url], notes: params[:url], label: params[:label], shorten_id: @id, ip: request.ip)
+    UrlMetadata.build(
+                  url: params[:url],
+                  notes: params[:notes],
+                  label: params[:label],
+                  shorten_id: @id,
+                  ip: request.ip
+                )
   end
 
   post "/short" do

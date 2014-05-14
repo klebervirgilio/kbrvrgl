@@ -6,14 +6,22 @@ describe "app" do
   end
 
   describe "GET /:id" do
-    it "should add a new store" do
-      Storage::RedisProxy.any_instance
-                         .should_receive(:get)
-                         .with("ID")
-                         .and_return("www.example.com")
+    context "when id exsits" do
+      include_context "when app sucessfully redirects"
+      it "should redirects for the stored url" do
+        get '/ID'
+        expect(last_response).to be_redirect
+      end
+    end
 
-      get '/ID'
-      expect(last_response).to be_redirect
+    context "when id does not exsits" do
+      include_context "when app fails to redirect"
+
+      subject! { get('/ID') }
+
+      describe "status" do
+        it { should be_not_found }
+      end
     end
   end
 end

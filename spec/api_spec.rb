@@ -26,7 +26,7 @@ describe "api" do
                            .with("+++example.com")
 
         post '/short', :url => "+++example.com"
-        expect(last_response.body).to_not match(/kbrvrgl.me\/ID/)
+        expect(last_response.body).to match(/Invalid/)
         expect(last_response.status).to be_eql(422)
       end
     end
@@ -34,7 +34,7 @@ describe "api" do
 
 
   describe "GET /:id" do
-    it "should add a new store" do
+    it "should returns the stored url" do
       Storage::RedisProxy.any_instance
                          .should_receive(:get)
                          .with("ID")
@@ -44,6 +44,4 @@ describe "api" do
       expect(last_response.body).to match(/example\.com/)
     end
   end
-
-
 end
