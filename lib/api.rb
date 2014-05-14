@@ -21,7 +21,7 @@ class Api < Sinatra::Base
 
   after "/short" do
     return if response.status == 422
-    UrlMetadata.build(
+    UrlMetadata.create_with_geoip(
                   url: params[:url],
                   notes: params[:notes],
                   label: params[:label],

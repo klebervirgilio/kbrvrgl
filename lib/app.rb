@@ -16,7 +16,7 @@ class App < Sinatra::Base
 
   after "/:id" do
     if response.redirect?
-      Stat.build(
+      Stat.create_with_geoip(
         shortner_id: params[:id],
         ip: request.ip,
         referer: request.referer
