@@ -1,5 +1,5 @@
 # coding: utf-8
-require File.expand_path("../config/boot.rb", __FILE__)
+require File.expand_path("../config/boot", __FILE__)
 
 run Rack::URLMap.new({
   "/api"  => Api,
