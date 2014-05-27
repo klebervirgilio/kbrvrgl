@@ -5,3 +5,6 @@ script: bundle exec rspec spec
 services:
   - mongodb
   - redis-server
+addons:
+  code_climate:
+    repo_token: 35b4a5925493c24e2c4577ac86a85f7be061894edb8fa92e22b537e3e77f5968

@@ -15,7 +15,9 @@ gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 gem 'pry'
 gem 'rake'
 
+
 group :test do
   gem 'rspec'
   gem 'awesome_print'
+  gem "codeclimate-test-reporter", require: nil
 end
