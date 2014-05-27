@@ -13,6 +13,7 @@ gem 'geoip'
 gem "mongoid", "~> 3.1.6"
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 gem 'pry'
+gem 'rake'
 
 group :test do
   gem 'rspec'

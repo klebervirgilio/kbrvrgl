@@ -34,6 +34,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rake (10.2.0)
     redis (3.0.7)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -75,6 +76,7 @@ DEPENDENCIES
   json
   mongoid (~> 3.1.6)
   pry
+  rake
   redis
   rspec
   shotgun
