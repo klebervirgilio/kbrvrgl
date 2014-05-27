@@ -16,6 +16,9 @@ Dir["#{path}/spec/support/**/*.rb"].each{|f| require f }
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
+require 'coveralls'
+Coveralls.wear!
+
 module RSpecMixin
   include Rack::Test::Methods
 end
