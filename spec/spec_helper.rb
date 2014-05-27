@@ -12,6 +12,10 @@ Dir["#{path}/lib/**/*.rb"].each{|f| require f }
 
 Dir["#{path}/spec/support/**/*.rb"].each{|f| require f }
 
+
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 module RSpecMixin
   include Rack::Test::Methods
 end
