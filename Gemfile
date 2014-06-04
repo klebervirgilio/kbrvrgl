@@ -5,6 +5,7 @@ ruby '2.0.0'
 gem "sinatra"
 gem 'sinatra-contrib'
 gem "redis"
+gem "thin"
 gem "slim"
 gem "json"
 gem "database_cleaner"
