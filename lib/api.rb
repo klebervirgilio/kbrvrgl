@@ -2,11 +2,11 @@
 require_relative './storage'
 class Api < Sinatra::Base
 
-  if ENV['RACK_ENV'] == "production"
-    use Rack::Auth::Basic, "API" do |username, password|
-      username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
-    end
-  end
+ #if ENV['RACK_ENV'] == "production"
+ #  use Rack::Auth::Basic, "API" do |username, password|
+ #    username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
+ #  end
+ #end
 
   store = Storage::RedisProxy.new
 
