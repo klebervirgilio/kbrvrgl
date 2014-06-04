@@ -37,7 +37,7 @@ class Api < Sinatra::Base
   end
 
   options "/short" do
-    200
+    status 200
   end
 
   post "/short" do
