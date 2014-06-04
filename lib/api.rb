@@ -19,6 +19,12 @@ class Api < Sinatra::Base
     halt 422, json({:message => 'Invalid URL'}) if !validator.valid?
   end
 
+  before do
+   content_type :json
+   headers 'Access-Control-Allow-Origin'  => '*',
+           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+  end
+
   after "/short" do
     return if response.status == 422
     UrlMetadata.create_with_geoip(
