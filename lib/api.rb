@@ -14,15 +14,18 @@ class Api < Sinatra::Base
 
   error { json :message => 'BOOMM...' }
 
+  before do
+    content_type :json
+     headers 'Access-Control-Allow-Origin' => '*',
+             'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST'],
+             'Access-Control-Allow-Headers' => 'Content-Type'
+  end
+
+  set :protection, false
+
   before "/short" do
     validator = UrlValidator.new(params[:url])
     halt 422, json({:message => 'Invalid URL'}) if !validator.valid?
-  end
-
-  before do
-   content_type :json
-   headers 'Access-Control-Allow-Origin'  => '*',
-           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
   end
 
   after "/short" do
