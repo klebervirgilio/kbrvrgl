@@ -8,6 +8,11 @@ class Api < Sinatra::Base
  #  end
  #end
 
+  set(:method) do |method|
+    method = method.to_s.upcase
+    condition { request.request_method == method }
+  end
+
   store = Storage::RedisProxy.new
 
   not_found { json :message => 'Lost...' }
@@ -23,7 +28,7 @@ class Api < Sinatra::Base
 
   set :protection, false
 
-  before "/short" do
+  before "/short", :method => :post do
     validator = UrlValidator.new(params[:url])
     halt 422, json({:message => 'Invalid URL'}) if !validator.valid?
   end
