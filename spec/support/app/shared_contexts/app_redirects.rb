@@ -12,8 +12,9 @@ shared_context "when app sucessfully redirects" do
 end
 
 
-shared_context "when app fails to redirect" do
+shared_context "when app fails to redirect", :foo => :bar do
   before {
+    binding.pry
     Storage::RedisAdapter.any_instance
                        .should_receive(:get)
                        .with("ID")
