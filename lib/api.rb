@@ -2,11 +2,22 @@
 require_relative './storage'
 class Api < Sinatra::Base
 
- #if ENV['RACK_ENV'] == "production"
- #  use Rack::Auth::Basic, "API" do |username, password|
- #    username == ENV['SHORTENER_USERNAME']  && password == ENV['SHORTENER_SECRET']
- #  end
- #end
+  configure :production, :development do
+    enable :logging
+  end
+
+  helpers do
+    def protected!
+      return if authorized?
+      headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+      halt 401, "Not authorized\n"
+    end
+
+    def authorized?
+      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['SHORTENER_USERNAME'], ENV['SHORTENER_SECRET']]
+    end
+  end
 
   set(:method) do |method|
     method = method.to_s.upcase
@@ -21,12 +32,18 @@ class Api < Sinatra::Base
 
   before do
     content_type :json
-     headers 'Access-Control-Allow-Origin' => '*',
+     headers 'Access-Control-Allow-Origin'  => '*',
              'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST'],
-             'Access-Control-Allow-Headers' => 'Content-Type'
+             'Access-Control-Allow-Headers' => 'Content-Type',
+             'Access-Control-Allow-Credentials' => 'true',
+             "Access-Control-Allow-Headers" => "Authorization"
+
+     if request.request_method == 'OPTIONS'
+       halt 200, 'Preflight!'
+     end
   end
 
-  set :protection, false
+  before { protected! }
 
   before "/short", :method => :post do
     validator = UrlValidator.new(params[:url])
@@ -42,10 +59,6 @@ class Api < Sinatra::Base
                   shorten_id: @id,
                   ip: request.ip
                 )
-  end
-
-  options "/short" do
-    status 200
   end
 
   post "/short" do

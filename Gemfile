@@ -5,8 +5,8 @@ ruby '2.0.0'
 gem "sinatra"
 gem 'sinatra-contrib'
 gem "redis"
-gem "thin"
 gem "slim"
+gem "thin"
 gem "json"
 gem "database_cleaner"
 gem 'shotgun'
