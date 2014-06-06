@@ -15,7 +15,7 @@ describe "Create url metadata for each shorten url" do
 
   context "for valids urls" do
     before {
-      Storage::RedisProxy.any_instance
+      Storage::RedisAdapter.any_instance
                  .should_receive(:set)
                  .at_least(1)
                  .with("http://www.example.com")

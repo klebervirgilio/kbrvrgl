@@ -1,4 +1,4 @@
-class Storage::RedisProxy < SimpleDelegator
+class Storage::RedisAdapter < SimpleDelegator
   def initialize
     __setobj__(REDIS)
   end

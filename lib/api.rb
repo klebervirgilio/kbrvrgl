@@ -24,7 +24,7 @@ class Api < Sinatra::Base
     condition { request.request_method == method }
   end
 
-  store = Storage::RedisProxy.new
+  store = Storage::RedisAdapter.new
 
   not_found { json :message => 'Lost...' }
 
@@ -43,7 +43,7 @@ class Api < Sinatra::Base
      end
   end
 
-  before { protected! }
+  before { protected! if ENV['RACK_ENV'] == 'production' }
 
   before "/short", :method => :post do
     validator = UrlValidator.new(params[:url])

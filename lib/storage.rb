@@ -4,4 +4,4 @@ module Storage
   class StorageError < StandardError; end
 end
 
-require './lib/storage/redis_proxy'
+require './lib/storage/redis_adapter'

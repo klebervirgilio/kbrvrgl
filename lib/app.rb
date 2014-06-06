@@ -3,7 +3,7 @@ require_relative './storage'
 class App < Sinatra::Base
   register Sinatra::Twitter::Bootstrap::Assets
 
-  store = Storage::RedisProxy.new
+  store = Storage::RedisAdapter.new
 
   not_found { "URL resquested not found" }
 

@@ -8,7 +8,7 @@ describe "api" do
   describe "POST /short" do
     context "Valid URLs" do
       it "should add a new url" do
-        Storage::RedisProxy.any_instance
+        Storage::RedisAdapter.any_instance
                            .should_receive(:set)
                            .with("http://www.example.com")
                            .and_return("ID")
@@ -21,7 +21,7 @@ describe "api" do
 
     context "Invalid URLs" do
       it "should not add a new url" do
-        Storage::RedisProxy.any_instance
+        Storage::RedisAdapter.any_instance
                            .should_not_receive(:set)
                            .with("+++example.com")
 
@@ -35,7 +35,7 @@ describe "api" do
 
   describe "GET /:id" do
     it "should returns the stored url" do
-      Storage::RedisProxy.any_instance
+      Storage::RedisAdapter.any_instance
                          .should_receive(:get)
                          .with("ID")
                          .and_return("www.example.com")
