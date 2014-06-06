@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body ng-controller="home">
+  <form ng-submit="submit()" name='shortForm' >
+    <input type="url" ng-model="url" name='url' required placeholder='http://domain.com'>
+    <input type="submit" ng-disabled='shortForm.$invalid' >
+    <span ng-show='shortForm.url.$error.url' > ñ parece uma URL. / does not seems like a URL </span>
+  </form>
+
+    <div ng-show="shrotUrl">
+      <span id='copy_this_text'>{{shrotUrl}}</span>
+      <button id="copy-button" title="Click me to copy to clipboard." data-clipboard-target="copy_this_text" data-clipboard-text="Default clipboard text from attribute">
+        <b>Copy To Clipboard...</b>
+      </button>
+    </div>
+
+    <div ng-show="error">
+      <p>{{error}}</p>
+    </div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.0.1/ZeroClipboard.min.js"></script>
+    <script type="text/javascript">
+
+      app = angular.module('MyApp',[])
+
+      app.controller('home', ["$scope", function($scope){
+
+        var success =  function(data){
+              $scope.shrotUrl = data.url;
+              $scope.$apply();
+            }, fail = function(obj,str,msg){
+              if(obj.responseText){
+                $scope.error = $.parseJSON(obj.responseText)['message'];
+              }else{
+                $scope.error = msg;
+              }
+              $scope.$apply();
+            };
+
+        $scope.submit = function(){
+          $.ajax({
+            type: "POST",
+            crossDomain: true,
+            url: 'http://r.kbrvrgl.me/api/short',
+            data: {"url": $scope.url },
+            beforeSend: function(x){ x.setRequestHeader('Authorization','Basic ZGV2OmRldg==') }
+          }).done(success).fail(fail)
+        }
+      }])
+
+
+      jQuery(document).ready(function(){
+        ZeroClipboard.config( { swfPath: 'http://ajax.cdnjs.com/ajax/libs/zeroclipboard/2.0.1/ZeroClipboard.swf' } );
+        var clip = new ZeroClipboard(jQuery("#copy-button"));
+      });
+
+  </script>
+</body>
+</html>

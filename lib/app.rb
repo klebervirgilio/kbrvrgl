@@ -25,7 +25,7 @@ class App < Sinatra::Base
   end
 
   get "/" do
-    slim :index
+    erb :index
   end
 
   get "/:id" do
