@@ -11,6 +11,8 @@
 <body ng-controller="home">
   <form ng-submit="submit()" name='shortForm' >
     <input type="url" ng-model="url" name='url' required placeholder='http://domain.com'>
+    <input type="text" ng-model="label" name='label' placeholder='label'>
+    <textarea ng-model="notes" name='notes' required placeholder='Some notes...'>
     <input type="submit" ng-disabled='shortForm.$invalid' >
     <span ng-show='shortForm.url.$error.url' > ñ parece uma URL. / does not seems like a URL </span>
   </form>
@@ -50,7 +52,7 @@
             type: "POST",
             crossDomain: true,
             url: 'http://r.kbrvrgl.me/api/short',
-            data: {"url": $scope.url },
+            data: {url: $scope.url, notes: $scope.notes, label: $scope.label },
             beforeSend: function(x){ x.setRequestHeader('Authorization','Basic ZGV2OmRldg==') }
           }).done(success).fail(fail)
         }
