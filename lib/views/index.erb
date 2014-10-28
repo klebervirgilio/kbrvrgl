@@ -58,6 +58,8 @@ input:focus, textarea:focus {
     <br />
     <input type="text" ng-model="label" name='label' placeholder='label'>
     <br />
+    <input type="text" ng-model="link_id" name='link_id' placeholder='link id'>
+    <br />
     <textarea ng-model="notes" name='notes' required placeholder='Some notes...'></textarea>
     <br />
     <input type="submit" ng-disabled='shortForm.$invalid' class="submit">
@@ -98,7 +100,7 @@ input:focus, textarea:focus {
             type: "POST",
             crossDomain: true,
             url: 'http://r.kbrvrgl.me/api/short',
-            data: {url: $scope.url, notes: $scope.notes, label: $scope.label },
+            data: {url: $scope.url, notes: $scope.notes, label: $scope.label, link: $scope.link_id },
             beforeSend: function(x){ x.setRequestHeader('Authorization','Basic ZGV2OmRldg==') }
           }).done(success).fail(fail)
         }

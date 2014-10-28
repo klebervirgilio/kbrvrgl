@@ -7,8 +7,8 @@ class Storage::RedisAdapter < SimpleDelegator
     REDIS.get [Storage::PREFIX, key].join
   end
 
-  def set url
-    generate_id.tap do |id|
+  def set url, id=nil
+    (id and !used?(id) and id || generate_id).tap do |id|
       REDIS.set [Storage::PREFIX, id].join, url
     end
   end
