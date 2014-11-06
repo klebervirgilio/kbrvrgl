@@ -76,6 +76,10 @@ input:focus, textarea:focus {
       <p>{{error}}</p>
     </div>
 
+    <div ng-show="notice">
+      <p>{{notice}}</p>
+    </div>
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.0.1/ZeroClipboard.min.js"></script>
     <script type="text/javascript">
 
@@ -85,6 +89,7 @@ input:focus, textarea:focus {
 
         var success =  function(data){
               $scope.shrotUrl = data.url;
+              $scope.notice = data.message;
               $scope.$apply();
             }, fail = function(obj,str,msg){
               if(obj.responseText){
@@ -99,7 +104,7 @@ input:focus, textarea:focus {
           $.ajax({
             type: "POST",
             crossDomain: true,
-            url: 'http://r.kbrvrgl.me/api/short',
+            url: 'http://<%= DOMAIN %>/api/short',
             data: {url: $scope.url, notes: $scope.notes, label: $scope.label, link: $scope.link_id },
             beforeSend: function(x){ x.setRequestHeader('Authorization','Basic ZGV2OmRldg==') }
           }).done(success).fail(fail)
