@@ -10,11 +10,11 @@ describe "api" do
       it "should add a new url" do
         Storage::RedisAdapter.any_instance
                            .should_receive(:set)
-                           .with("http://www.example.com")
+                           .with("http://www.example.com",  nil)
                            .and_return("ID")
 
         post '/short', :url => "http://www.example.com"
-        expect(last_response.body).to match(/kbrvrgl.me\/ID/)
+        expect(last_response.body).to match(/#{DOMAIN}\/ID/)
         expect(last_response.status).to be_eql(201)
       end
     end

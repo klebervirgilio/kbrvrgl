@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/app_spec.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/app_spec.rb": [
         1,
         null,
         1,
@@ -30,7 +30,7 @@
         null,
         null
       ],
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/features/api/create_url_metada_spec.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/features/api/create_url_metada_spec.rb": [
         1,
         null,
         1,
@@ -63,7 +63,7 @@
         null,
         null
       ],
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/features/app/count_the_number_of_visualizations_spec.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/features/app/count_the_number_of_visualizations_spec.rb": [
         1,
         null,
         1,
@@ -96,7 +96,7 @@
         null,
         null
       ],
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/features/app/create_stats_spec.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/features/app/create_stats_spec.rb": [
         1,
         null,
         1,
@@ -121,7 +121,7 @@
         null,
         null
       ],
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/features/geoable/geoable_spec.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/features/geoable/geoable_spec.rb": [
         1,
         1,
         1,
@@ -150,14 +150,14 @@
         null,
         null
       ],
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/light_spec_helper.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/light_spec_helper.rb": [
         1,
         1,
         1,
         1,
         1
       ],
-      "/Users/klebervirgilio/dev/roomorama/kbrvrgl.me/spec/services/geo_ip_service_spec.rb": [
+      "/Users/klebervirgilio/Documents/dev/kbrvrgl/spec/services/geo_ip_service_spec.rb": [
         1,
         null,
         1,
@@ -176,6 +176,6 @@
         null
       ]
     },
-    "timestamp": 1402082732
+    "timestamp": 1415279373
   }
 }

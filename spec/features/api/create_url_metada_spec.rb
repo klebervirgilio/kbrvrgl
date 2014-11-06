@@ -6,7 +6,7 @@ describe "Create url metadata for each shorten url" do
   end
 
   context "for invalids urls" do
-    it "should not create an url metadata" do
+    it "does not create an url metadata" do
       expect{
         post '/short', :url => "++example.com"
       }.to_not change{ UrlMetadata.count }
@@ -18,11 +18,11 @@ describe "Create url metadata for each shorten url" do
       Storage::RedisAdapter.any_instance
                  .should_receive(:set)
                  .at_least(1)
-                 .with("http://www.example.com")
+                 .with("http://www.example.com", nil)
                  .and_return("ID")
     }
 
-    it "should create an url metadata" do
+    it "creates an url metadata" do
       expect{
         2.times{ post '/short', :url => "http://www.example.com" }
       }.to change{ UrlMetadata.count }.from(0).to(2)
