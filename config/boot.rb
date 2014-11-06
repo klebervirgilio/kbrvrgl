@@ -4,7 +4,7 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, ENV["RACK_ENV"].to_sym)
 
-DOMAIN = ENV["SHORTENER_DOMAIN"] || ENV["RACK_ENV"] == "production" ? "r.kbrvrgl.me" : 'localhost:9393'
+DOMAIN = ENV["SHORTENER_DOMAIN"] || ENV["RACK_ENV"] == "production" ? "r.kbrvrgl.me" : "localhost:#{ENV['PORT']}"
 GEOIP  = GeoIP.new(File.expand_path("../../bin/GeoIP.dat", __FILE__))
 REDIS  = if ENV["RACK_ENV"] != "production"
           Redis.new

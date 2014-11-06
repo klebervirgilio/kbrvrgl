@@ -16,6 +16,8 @@ gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 gem 'pry'
 gem 'rake'
 gem 'coveralls', require: false
+gem 'foreman'
+gem 'puma'
 
 group :test do
   gem 'rspec'
